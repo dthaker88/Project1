@@ -4,15 +4,18 @@
 
 
         echo "<html><body><table>\n\n";
-        $f = fopen("uploads/csv_sample_1.csv", "r");
-        while (($line = fgetcsv($f)) !== false) {
-            echo "<tr>";
-            foreach ($line as $cell) {
+        $file_read = fopen("uploads/csv_sample_1.csv", "r");
+
+        
+        while (($f_text = fgetcsv($file_read)) !== false) {
+
+            foreach ($f_text as $cell) {
+
                 echo "<td>" . htmlspecialchars($cell) . "</td>";
             }
             echo "</tr>\n";
         }
-        fclose($f);
+        fclose($file_read);
         echo "\n</table></body></html>";
 
 
