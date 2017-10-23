@@ -27,24 +27,16 @@ class fileUpload
     public function test2 () {*/
 
 
-    if(isset($_FILES['image'])) {
+    if(isset($_FILES['myFile'])) {
         $errors = array();
-        $file_name = $_FILES['image']['name'];
-        $file_tmp = $_FILES['image']['tmp_name'];
-        $file_type = $_FILES['image']['type'];
-        $file_ext = strtolower(end(explode('.', $_FILES['image']['name'])));
-
-
-        $expensions = array( "csv", "xlsx");
-
-        if (in_array($file_ext, $expensions) === false) {
-            $errors[] = "Please choose a CSV, or Excel file.";
-        }
+        $name = $_FILES['myFile']['name'];
+        $f_tmp = $_FILES['myFile']['tmp_name'];
+        $fileExt = strtolower(end(explode('.', $_FILES['myFile']['name'])));
 
 
 
         if (empty($errors) == true) {
-            move_uploaded_file($file_tmp, "uploads/" . $file_name);
+            move_uploaded_file($f_tmp, "uploads/" . $name);
             echo "Success";
         } else {
             print_r($errors);
@@ -66,7 +58,7 @@ class fileUpload
 <body >
 
 <form action = "" method = "POST" enctype = "multipart/form-data" >
-    <input type = "file" name = "image" />
+    <input type = "file" name = "myFile" />
     <input type = "submit" />
 </form >
 
